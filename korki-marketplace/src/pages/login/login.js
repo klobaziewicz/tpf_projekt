@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Logo from "../../components/logo" 
+import {Link} from "react-router-dom"
 
 const styles = `
   @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap');
@@ -298,9 +299,9 @@ export default function Login() {
         <div className="login-content">
  
           {/* Logo */}
-          <div className="login-logo">
+          <Link to="/" className="login-logo">
             <Logo size="lg" showSub={true}/>
-          </div>
+          </Link>
  
           {/* Card */}
           <div className="login-card">

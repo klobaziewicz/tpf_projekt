@@ -525,7 +525,7 @@ export default function Home() {
 
         {/* NAV */}
         <nav className="nav">
-          <Logo size="md" showSub={false}/>
+           <Link to="/" className="nav-logo"><Logo size="md" showSub={false}/></Link> 
           <ul className="nav-links">
             <li><a href="#">Platforma</a></li>
             <li><a href="#">Jak to Działa</a></li>
