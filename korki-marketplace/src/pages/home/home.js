@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Logo from "../../components/logo"
 
 const styles = `
   @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap');
@@ -523,7 +524,7 @@ export default function Home() {
 
         {/* NAV */}
         <nav className="nav">
-          <a href="#" className="nav-logo">Twoje<span>Korki</span></a>
+          <Logo size="md" showSub={false}/>
           <ul className="nav-links">
             <li><a href="#">Platforma</a></li>
             <li><a href="#">Jak to Działa</a></li>
@@ -651,8 +652,8 @@ export default function Home() {
         {/* FOOTER */}
         <footer className="footer">
           <div>
-            <div className="footer-logo">Twoje<span>Korki</span></div>
-            <div className="footer-copy">© 2025 Twoje Korki. Wszelkie prawa zastrzeżone.</div>
+            <div className="footer-logo"><Logo size="md" light={true} showSub={false}/></div>
+            <div className="footer-copy">© 2026 Twoje Korki. Wszelkie prawa zastrzeżone.</div>
           </div>
           <ul className="footer-links">
             <li><a href="#">Privacy Policy</a></li>
