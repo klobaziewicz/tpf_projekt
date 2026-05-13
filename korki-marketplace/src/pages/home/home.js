@@ -1,0 +1,670 @@
+import React, { useState } from "react";
+import {Link} from "react-router-dom";
+import Logo from "../../components/logo"
+
+const styles = `
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap');
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  .tutor-app {
+    font-family: 'DM Sans', sans-serif;
+    color: #1a1a2e;
+    background: #fafaf8;
+    min-height: 100vh;
+  }
+
+  /* NAV */
+  .nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 5%;
+    height: 64px;
+    background: #fff;
+    border-bottom: 1px solid #ebebeb;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: #1a1a2e;
+    text-decoration: none;
+    letter-spacing: -0.3px;
+  }
+  .nav-logo span { color: #3b5bdb; }
+  .nav-links {
+    display: flex;
+    gap: 28px;
+    list-style: none;
+  }
+  .nav-links a {
+    font-size: 14px;
+    color: #555;
+    text-decoration: none;
+    font-weight: 400;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: #1a1a2e; }
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .btn-ghost {
+    background: none;
+    border: none;
+    font-size: 14px;
+    color: #555;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    padding: 8px 12px;
+    border-radius: 8px;
+    transition: background 0.2s;
+  }
+  .btn-ghost:hover { background: #f0f0f0; }
+  .btn-primary {
+    background: #3b5bdb;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 22px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    transition: background 0.2s, transform 0.1s;
+  }
+  .btn-primary:hover { background: #2f4ac0; transform: translateY(-1px); }
+
+  /* HERO */
+  .hero {
+    display: flex;
+    align-items: center;
+    padding: 80px 5% 80px;
+    gap: 60px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .hero-content { flex: 1; }
+  .hero-badge {
+    display: inline-block;
+    background: #eef2ff;
+    color: #3b5bdb;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 20px;
+    margin-bottom: 24px;
+  }
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(42px, 5vw, 64px);
+    font-weight: 700;
+    line-height: 1.08;
+    color: #1a1a2e;
+    margin-bottom: 8px;
+    letter-spacing: -1px;
+  }
+  .hero-title em {
+    font-style: italic;
+    color: #3b5bdb;
+  }
+  .hero-subtitle {
+    font-size: 16px;
+    color: #666;
+    line-height: 1.7;
+    margin-bottom: 36px;
+    max-width: 480px;
+    font-weight: 300;
+  }
+  .search-bar {
+    display: flex;
+    background: #fff;
+    border: 1.5px solid #ddd;
+    border-radius: 14px;
+    overflow: hidden;
+    max-width: 480px;
+    box-shadow: 0 4px 24px rgba(59,91,219,0.08);
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .search-bar:focus-within {
+    border-color: #3b5bdb;
+    box-shadow: 0 4px 24px rgba(59,91,219,0.18);
+  }
+  .search-bar input {
+    flex: 1;
+    border: none;
+    outline: none;
+    padding: 16px 20px;
+    font-size: 15px;
+    font-family: 'DM Sans', sans-serif;
+    color: #1a1a2e;
+    background: transparent;
+  }
+  .search-bar input::placeholder { color: #aaa; }
+  .search-btn {
+    background: #3b5bdb;
+    border: none;
+    color: #fff;
+    padding: 0 28px;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    transition: background 0.2s;
+  }
+  .search-btn:hover { background: #2f4ac0; }
+
+  .hero-image {
+    flex: 0 0 380px;
+    position: relative;
+  }
+  .hero-img-card {
+    width: 100%;
+    border-radius: 24px;
+    overflow: hidden;
+    background: linear-gradient(135deg, #2d3561 0%, #1a1a2e 100%);
+    aspect-ratio: 4/3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    box-shadow: 0 20px 60px rgba(59,91,219,0.2);
+  }
+  .hero-img-avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #3b5bdb, #6c8ff0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 48px;
+  }
+  .hero-quote-bubble {
+    position: absolute;
+    bottom: 24px;
+    left: 24px;
+    right: 24px;
+    background: #fff;
+    border-radius: 14px;
+    padding: 14px 18px;
+    font-size: 13px;
+    color: #1a1a2e;
+    line-height: 1.5;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+  }
+  .hero-quote-bubble strong { display: block; font-size: 12px; color: #888; margin-top: 8px; }
+
+  /* CATEGORIES */
+  .section {
+    padding: 80px 5%;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 32px;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: #1a1a2e;
+    letter-spacing: -0.5px;
+  }
+  .section-link {
+    font-size: 14px;
+    color: #3b5bdb;
+    text-decoration: none;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .section-link:hover { text-decoration: underline; }
+  .section-desc {
+    font-size: 15px;
+    color: #888;
+    margin-top: -20px;
+    margin-bottom: 32px;
+    font-weight: 300;
+  }
+
+  .categories-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .category-card {
+    border-radius: 18px;
+    overflow: hidden;
+    position: relative;
+    aspect-ratio: 4/3;
+    cursor: pointer;
+    transition: transform 0.25s, box-shadow 0.25s;
+  }
+  .category-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,0.15); }
+  .cat-bg {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 64px;
+  }
+  .cat-bg-math { background: linear-gradient(135deg, #1a1a2e 0%, #2d3561 100%); }
+  .cat-bg-phys { background: linear-gradient(135deg, #0d2137 0%, #1a4060 100%); }
+  .cat-bg-lang { background: linear-gradient(135deg, #1a0a0a 0%, #3d1515 100%); }
+  .category-label {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 20px;
+    background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 100%);
+    color: #fff;
+  }
+  .category-label .cat-tag {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: rgba(255,255,255,0.6);
+    display: block;
+    margin-bottom: 4px;
+  }
+  .category-label .cat-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+  }
+
+  /* HOW IT WORKS */
+  .how-section {
+    background: #f4f6ff;
+    padding: 80px 5%;
+  }
+  .how-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .how-section .section-title {
+    text-align: center;
+    margin-bottom: 56px;
+  }
+  .steps-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+  }
+  .step {
+    text-align: center;
+  }
+  .step-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 18px;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    font-size: 28px;
+    box-shadow: 0 4px 16px rgba(59,91,219,0.1);
+    border: 1px solid #e8ecff;
+  }
+  .step-num {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #3b5bdb;
+    margin-bottom: 8px;
+  }
+  .step-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: #1a1a2e;
+    margin-bottom: 12px;
+  }
+  .step-desc {
+    font-size: 14px;
+    color: #777;
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  /* TESTIMONIALS */
+  .testimonials-section {
+    padding: 80px 5%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+  .testimonials-left .section-title {
+    margin-bottom: 16px;
+    font-size: 36px;
+  }
+  .testimonials-left p {
+    font-size: 15px;
+    color: #777;
+    line-height: 1.7;
+    margin-bottom: 32px;
+    font-weight: 300;
+  }
+  .stats-row {
+    display: flex;
+    gap: 32px;
+  }
+  .stat { text-align: left; }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: #1a1a2e;
+  }
+  .stat-label {
+    font-size: 13px;
+    color: #999;
+    font-weight: 300;
+  }
+
+  .testimonial-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .testimonial-card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 24px;
+    border: 1px solid #ebebeb;
+    transition: box-shadow 0.2s;
+  }
+  .testimonial-card:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
+  .stars { color: #f59f00; font-size: 14px; margin-bottom: 12px; }
+  .testimonial-text {
+    font-size: 14px;
+    color: #444;
+    line-height: 1.7;
+    margin-bottom: 16px;
+    font-weight: 300;
+  }
+  .testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .author-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff;
+    flex-shrink: 0;
+  }
+  .author-name {
+    font-size: 14px;
+    font-weight: 500;
+    color: #1a1a2e;
+  }
+  .author-role {
+    font-size: 12px;
+    color: #aaa;
+  }
+
+  /* FOOTER */
+  .footer {
+    background: #1a1a2e;
+    color: #fff;
+    padding: 40px 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .footer-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 700;
+  }
+  .footer-logo span { color: #6c8ff0; }
+  .footer-copy {
+    font-size: 13px;
+    color: #888;
+    margin-top: 4px;
+  }
+  .footer-links {
+    display: flex;
+    gap: 24px;
+    list-style: none;
+  }
+  .footer-links a {
+    font-size: 13px;
+    color: #888;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer-links a:hover { color: #fff; }
+
+  @media (max-width: 900px) {
+    .hero { flex-direction: column; padding: 48px 5%; }
+    .hero-image { flex: none; width: 100%; max-width: 400px; }
+    .categories-grid { grid-template-columns: 1fr; }
+    .steps-grid { grid-template-columns: 1fr; gap: 32px; }
+    .testimonials-section { grid-template-columns: 1fr; }
+  }
+`;
+
+const categories = [
+  { bg: "cat-bg-math", emoji: "📐", tag: "NAUKI ŚCISŁE", name: "Matematyka" },
+  { bg: "cat-bg-phys", emoji: "⚡", tag: "NAUKI ŚCISŁE", name: "Fizyka" },
+  { bg: "cat-bg-lang", emoji: "📚", tag: "JĘZYKI", name: "Języki Obce" },
+];
+
+const steps = [
+  {
+    emoji: "🔍",
+    num: "Krok 01",
+    title: "Znajdź Nauczyciela",
+    desc: "Odkryj grono ekspertów w wybranej dziedzinie. Filtruj według tematu, ceny i dostępności.",
+  },
+  {
+    emoji: "📋",
+    num: "Krok 02",
+    title: "Umów Sesję",
+    desc: "Skontaktuj się z nauczycielem i umów pierwszą lekcję w terminie odpowiednim dla Ciebie.",
+  },
+  {
+    emoji: "🎯",
+    num: "Krok 03",
+    title: "Osiągnij Cel",
+    desc: "Ucz się we własnym tempie i śledź postępy. Twój nauczyciel jest z Tobą na każdym etapie.",
+  },
+];
+
+const testimonials = [
+  {
+    stars: 4,
+    text: "Polecam serdecznie wszystkim! Twoje Korki to świetna platforma — znalazłam idealnego nauczyciela matematyki dla mojej córki w ciągu kilku minut.",
+    name: "Michał Nowak",
+    role: "Rodzic ucznia, Kraków",
+    avatarColor: "#3b5bdb",
+    initials: "MN",
+  },
+  {
+    stars: 5,
+    text: "Dzięki tej platformie zdałem maturę z fizyki na 95%! Pan Kowalski to niesamowity nauczyciel, który tłumaczy wszystko prostym językiem.",
+    name: "Julia Kowalska",
+    role: "Maturzystka, Warszawa",
+    avatarColor: "#2f9e44",
+    initials: "JK",
+  },
+];
+
+export default function Home() {
+  const [searchValue, setSearchValue] = useState("");
+
+  return (
+    <>
+      <style>{styles}</style>
+      <div className="tutor-app">
+
+        {/* NAV */}
+        <nav className="nav">
+           <Link to="/" className="nav-logo"><Logo size="md" showSub={false}/></Link> 
+          <ul className="nav-links">
+            <li><a href="#">Platforma</a></li>
+            <li><a href="#">Jak to Działa</a></li>
+          </ul>
+          <div className="nav-right">
+            <Link to="/login" className="btn-ghost">Zaloguj się</Link>
+            <button className="btn-primary">Zarejestruj się</button>
+          </div>
+        </nav>
+
+        {/* HERO */}
+        <section style={{ background: "#fff" }}>
+          <div className="hero">
+            <div className="hero-content">
+              <span className="hero-badge">Platforma Edukacyjna</span>
+              <h1 className="hero-title">
+                Znajdź idealnego<br />
+                <em>nauczyciela.</em>
+              </h1>
+              <p className="hero-subtitle">
+                Wyselekcjonowana grono ekspertów, którzy pomogą Ci osiągnąć możliwości w wybranej dziedzinie. Nauka rośnie razem z Twoimi ambicjami.
+              </p>
+              <div className="search-bar">
+                <input
+                  type="text"
+                  placeholder="Szukaj po dziedzinie..."
+                  value={searchValue}
+                  onChange={(e) => setSearchValue(e.target.value)}
+                />
+                <button className="search-btn">Szukaj</button>
+              </div>
+            </div>
+
+            <div className="hero-image">
+              <div className="hero-img-card">
+                <div className="hero-img-avatar">👨‍🏫</div>
+                <div className="hero-quote-bubble">
+                  "Nauka matematyki stała się dla mnie przyjemnością dzięki świetnemu nauczycielowi z Twoje Korki."
+                  <strong>Anna K. — uczennica liceum</strong>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* CATEGORIES */}
+        <div className="section">
+          <div className="section-header">
+            <div>
+              <h2 className="section-title">Eksperckie Dziedziny</h2>
+            </div>
+            <a href="#" className="section-link">Wszystkie kategorie →</a>
+          </div>
+          <p className="section-desc">
+            Specjaliści w matematyce, naukach ścisłych i językach obcych czekają na Ciebie.
+          </p>
+          <div className="categories-grid">
+            {categories.map((cat) => (
+              <div key={cat.name} className="category-card">
+                <div className={`cat-bg ${cat.bg}`}>{cat.emoji}</div>
+                <div className="category-label">
+                  <span className="cat-tag">{cat.tag}</span>
+                  <span className="cat-name">{cat.name}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* HOW IT WORKS */}
+        <div className="how-section">
+          <div className="how-inner">
+            <h2 className="section-title">Jak to Działa</h2>
+            <div className="steps-grid">
+              {steps.map((step) => (
+                <div key={step.title} className="step">
+                  <div className="step-icon">{step.emoji}</div>
+                  <div className="step-num">{step.num}</div>
+                  <h3 className="step-title">{step.title}</h3>
+                  <p className="step-desc">{step.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* TESTIMONIALS */}
+        <div className="testimonials-section">
+          <div className="testimonials-left">
+            <h2 className="section-title">W słowach naszych studentów</h2>
+            <p>
+              Dołącz do tysięcy uczniów, którzy zmienili swoje wyniki i zamiłowanie do nauki dzięki platformie Twoje Korki.
+            </p>
+            <div className="stats-row">
+              <div className="stat">
+                <div className="stat-num">4,200</div>
+                <div className="stat-label">Aktywnych uczniów</div>
+              </div>
+              <div className="stat">
+                <div className="stat-num">620+</div>
+                <div className="stat-label">Ekspertów</div>
+              </div>
+            </div>
+          </div>
+
+          <div className="testimonial-cards">
+            {testimonials.map((t) => (
+              <div key={t.name} className="testimonial-card">
+                <div className="stars">{"★".repeat(t.stars)}{"☆".repeat(5 - t.stars)}</div>
+                <p className="testimonial-text">"{t.text}"</p>
+                <div className="testimonial-author">
+                  <div className="author-avatar" style={{ background: t.avatarColor }}>
+                    {t.initials}
+                  </div>
+                  <div>
+                    <div className="author-name">{t.name}</div>
+                    <div className="author-role">{t.role}</div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* FOOTER */}
+        <footer className="footer">
+          <div>
+            <div className="footer-logo"><Logo size="md" light={true} showSub={false}/></div>
+            <div className="footer-copy">© 2026 Twoje Korki. Wszelkie prawa zastrzeżone.</div>
+          </div>
+          <ul className="footer-links">
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Service</a></li>
+            <li><a href="#">Help Center</a></li>
+            <li><a href="#">Community Guidelines</a></li>
+          </ul>
+        </footer>
+
+      </div>
+    </>
+  );
+}
