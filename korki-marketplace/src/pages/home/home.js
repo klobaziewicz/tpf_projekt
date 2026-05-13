@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import {Link} from "react-router-dom";
 import Logo from "../../components/logo"
 
 const styles = `
@@ -530,7 +531,7 @@ export default function Home() {
             <li><a href="#">Jak to Działa</a></li>
           </ul>
           <div className="nav-right">
-            <button className="btn-ghost">Zaloguj się</button>
+            <Link to="/login" className="btn-ghost">Zaloguj się</Link>
             <button className="btn-primary">Zarejestruj się</button>
           </div>
         </nav>
