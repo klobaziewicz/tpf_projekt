@@ -36,3 +36,12 @@
     transform: rotate(360deg);
   }
 }
+
+.auth-loading {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "DM Sans", sans-serif;
+  color: #555;
+}
