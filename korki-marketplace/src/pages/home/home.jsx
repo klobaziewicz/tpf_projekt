@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import Logo from "../../components/logo";
 import "./home.css";
 import Footer from "../../components/footer";
 import Navbar from "../../components/navbar";
@@ -106,9 +105,9 @@ export default function Home() {
             <div>
               <h2 className="section-title">Eksperckie Dziedziny</h2>
             </div>
-            <a href="#" className="section-link">
+            <Link to="/" className="section-link">
               Wszystkie kategorie →
-            </a>
+            </Link>
           </div>
           <p className="section-desc">
             Specjaliści w matematyce, naukach ścisłych i językach obcych czekają
