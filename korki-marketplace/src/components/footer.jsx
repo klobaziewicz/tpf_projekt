@@ -1,4 +1,5 @@
 import Logo from "./logo";
+import { Link } from "react-router-dom";
 
 export default function Footer({ variant }) {
   if (variant === "login") {
@@ -9,16 +10,16 @@ export default function Footer({ variant }) {
         </div>
         <ul className="footer-links-small">
           <li>
-            <a href="#">Privacy Policy</a>
+            <Link to="/">Privacy Policy</Link>
           </li>
           <li>
-            <a href="#">Terms of Service</a>
+            <Link to="/">Terms of Service</Link>
           </li>
           <li>
-            <a href="#">Help Center</a>
+            <Link to="/">Help Center</Link>
           </li>
           <li>
-            <a href="#">Community Guidelines</a>
+            <Link to="/">Community Guidelines</Link>
           </li>
         </ul>
         <div className="footer-copy-small">
@@ -42,19 +43,19 @@ export default function Footer({ variant }) {
 
       <ul className="footer-links">
         <li>
-          <a href="#">Privacy Policy</a>
+          <Link to="/">Privacy Policy</Link>
         </li>
 
         <li>
-          <a href="#">Terms of Service</a>
+          <Link to="/">Terms of Service</Link>
         </li>
 
         <li>
-          <a href="#">Help Center</a>
+          <Link to="/">Help Center</Link>
         </li>
 
         <li>
-          <a href="#">Community Guidelines</a>
+          <Link to="/">Community Guidelines</Link>
         </li>
       </ul>
     </footer>
