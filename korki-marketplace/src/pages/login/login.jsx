@@ -78,9 +78,9 @@ export default function Login() {
                   <label className="form-label" style={{ margin: 0 }}>
                     Hasło
                   </label>
-                  <a href="#" className="forgot-link">
+                  <Link to="/" className="forgot-link">
                     Zapomniałeś hasła?
-                  </a>
+                  </Link>
                 </div>
                 <div className="input-wrapper" style={{ marginTop: 8 }}>
                   <span className="input-icon">
@@ -223,7 +223,7 @@ export default function Login() {
             </div>
 
             <div className="register-row">
-              Nie masz konta? <a href="#">Zarejestruj się</a>
+              Nie masz konta? <Link to="/">Zarejestruj się</Link>
             </div>
           </div>
         </div>
