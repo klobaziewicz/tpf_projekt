@@ -9,7 +9,7 @@ export default function Navbar() {
       </Link>
       <ul className="nav-links">
         <li>
-          <Link to="/">Platforma</Link>
+          <Link to="/platform">Platforma</Link>
         </li>
         <li>
           <Link to="/">Jak to Działa</Link>
