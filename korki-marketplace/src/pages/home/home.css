@@ -49,8 +49,14 @@
   font-weight: 400;
   transition: color 0.2s;
 }
-.nav-links a:hover {
+.nav-links a:hover,
+.nav-links a.nav-active {
   color: #1a1a2e;
+}
+.nav-links a.nav-active {
+  font-weight: 500;
+  border-bottom: 2px solid #3b5bdb;
+  padding-bottom: 2px;
 }
 .nav-right {
   display: flex;
@@ -96,6 +102,37 @@
 .btn-primary:hover {
   background: #2f4ac0;
   transform: translateY(-1px);
+}
+a.btn-primary,
+a.nav-register {
+  text-decoration: none;
+  display: inline-block;
+}
+.nav-user-menu {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.nav-user-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #3b5bdb;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.nav-user-name {
+  font-size: 14px;
+  font-weight: 500;
+  color: #1a1a2e;
+}
+.nav-logout {
+  margin-left: 8px;
+  font-size: 12px !important;
 }
 
 /* HERO */

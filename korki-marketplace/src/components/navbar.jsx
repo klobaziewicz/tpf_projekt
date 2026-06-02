@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import Logo from "./logo";
 import { useAuth } from "../hooks/useAuth";
 
-export default function Navbar() {
+export default function Navbar({ activeLink }) {
   const { user, loading, logOut } = useAuth();
 
   return (
@@ -12,10 +12,15 @@ export default function Navbar() {
       </Link>
       <ul className="nav-links">
         <li>
-          <Link to="/">Platforma</Link>
+          <Link
+            to="/search"
+            className={activeLink === "platforma" ? "nav-active" : undefined}
+          >
+            Platforma
+          </Link>
         </li>
         <li>
-          <Link to="/">Jak to Działa</Link>
+          <a href="/home#how-it-works">Jak to Działa</a>
         </li>
       </ul>
       <div className="nav-right">
@@ -28,10 +33,12 @@ export default function Navbar() {
           </>
         ) : (
           <>
-            <Link to="/login" className="btn-ghost">
+            <Link to="/" className="btn-ghost">
               Zaloguj się
             </Link>
-            <button className="btn-primary">Zarejestruj się</button>
+            <Link to="/register" className="btn-primary nav-register">
+              Zarejestruj się
+            </Link>
           </>
         )}
       </div>
