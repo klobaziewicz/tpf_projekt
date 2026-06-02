@@ -1,13 +1,14 @@
 import { useEffect } from "react";
-import './App.css';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import "./App.css";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import ReactGA from "react-ga4";
 import Home from "./pages/home/home";
 import Login from "./pages/login/login";
 import Register from "./pages/register/register";
+import Search from "./pages/search/search";
+import TutorProfile from "./pages/tutor-profile/tutor-profile";
 import AnalyticsListener from "./components/AnalyticsListener";
 import { AuthProvider } from "./contexts/AuthContext";
-import ProtectedRoute from "./components/ProtectedRoute";
 import GuestRoute from "./components/GuestRoute";
 
 function App() {
@@ -36,14 +37,9 @@ function App() {
               </GuestRoute>
             }
           />
-          <Route
-            path="/home"
-            element={
-              <ProtectedRoute>
-                <Home />
-              </ProtectedRoute>
-            }
-          />
+          <Route path="/home" element={<Home />} />
+          <Route path="/search" element={<Search />} />
+          <Route path="/tutor/:id" element={<TutorProfile />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </BrowserRouter>

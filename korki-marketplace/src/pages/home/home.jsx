@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import Logo from "../../components/logo";
+import { useNavigate } from "react-router-dom";
 import "./home.css";
 import Footer from "../../components/footer";
 import Navbar from "../../components/navbar";
@@ -52,7 +51,13 @@ const testimonials = [
 ];
 
 export default function Home() {
+  const navigate = useNavigate();
   const [searchValue, setSearchValue] = useState("");
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    navigate("/search");
+  };
 
   return (
     <>
@@ -76,15 +81,17 @@ export default function Home() {
                 możliwości w wybranej dziedzinie. Nauka rośnie razem z Twoimi
                 ambicjami.
               </p>
-              <div className="search-bar">
+              <form className="search-bar" onSubmit={handleSearch}>
                 <input
                   type="text"
                   placeholder="Szukaj po dziedzinie..."
                   value={searchValue}
                   onChange={(e) => setSearchValue(e.target.value)}
                 />
-                <button className="search-btn">Szukaj</button>
-              </div>
+                <button type="submit" className="search-btn">
+                  Szukaj
+                </button>
+              </form>
             </div>
 
             <div className="hero-image">
@@ -128,7 +135,7 @@ export default function Home() {
         </div>
 
         {/* HOW IT WORKS */}
-        <div className="how-section">
+        <div className="how-section" id="how-it-works">
           <div className="how-inner">
             <h2 className="section-title">Jak to Działa</h2>
             <div className="steps-grid">
