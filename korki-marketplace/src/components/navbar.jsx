@@ -12,10 +12,10 @@ export default function Navbar() {
       </Link>
       <ul className="nav-links">
         <li>
-          <a href="#">Platforma</a>
+          <Link to="/">Platforma</Link>
         </li>
         <li>
-          <a href="#">Jak to Działa</a>
+          <Link to="/">Jak to Działa</Link>
         </li>
       </ul>
       <div className="nav-right">

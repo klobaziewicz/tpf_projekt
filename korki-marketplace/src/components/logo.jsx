@@ -1,5 +1,6 @@
 import React from "react";
 import "./logo.css";
+import { Link } from "react-router-dom";
 
 export default function Logo({ size = "md", showSub = false, href = "#", light = false }) {
   const sizes = {
@@ -12,7 +13,7 @@ export default function Logo({ size = "md", showSub = false, href = "#", light =
   const s = sizes[size] || sizes.md;
 
   return (
-    <a href={href} className="logo-wrap">
+    <Link to={href} className="logo-wrap">
       <span className="logo-text" style={{ fontSize: s.text, color: light ? "#fff" : "#1a1a2e" }}>
         Twoje<span style={{ color: light ? "#6c8ff0" : "#3b5bdb" }}>Korki</span>
       </span>
@@ -21,6 +22,6 @@ export default function Logo({ size = "md", showSub = false, href = "#", light =
           Portal Korepetycji
         </span>
       )}
-    </a>
+    </Link>
   );
 }
