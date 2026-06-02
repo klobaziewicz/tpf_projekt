@@ -1,11 +1,15 @@
 import { useEffect } from "react";
-import './App.css';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import "./App.css";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import ReactGA from "react-ga4";
 import Home from "./pages/home/home";
 import Login from "./pages/login/login";
-import Platform from "./pages/platform/platform";
+import Register from "./pages/register/register";
+import Search from "./pages/search/search";
+import TutorProfile from "./pages/tutor-profile/tutor-profile";
 import AnalyticsListener from "./components/AnalyticsListener";
+import { AuthProvider } from "./contexts/AuthContext";
+import GuestRoute from "./components/GuestRoute";
 
 function App() {
   useEffect(() => {
@@ -13,14 +17,33 @@ function App() {
   }, []);
 
   return (
-    <BrowserRouter>
-      <AnalyticsListener />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/platform" element={<Platform />} />
-      </Routes>
-    </BrowserRouter>
+    <AuthProvider>
+      <BrowserRouter>
+        <AnalyticsListener />
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <GuestRoute>
+                <Login />
+              </GuestRoute>
+            }
+          />
+          <Route
+            path="/register"
+            element={
+              <GuestRoute>
+                <Register />
+              </GuestRoute>
+            }
+          />
+          <Route path="/home" element={<Home />} />
+          <Route path="/search" element={<Search />} />
+          <Route path="/tutor/:id" element={<TutorProfile />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
+      </BrowserRouter>
+    </AuthProvider>
   );
 }
 
