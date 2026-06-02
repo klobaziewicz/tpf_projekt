@@ -1,42 +1,98 @@
 import React, { useState } from "react";
 import Logo from "../../components/logo";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./login.css";
 import Footer from "../../components/footer";
-
-// const styles = `
-
-// `;
+import { useAuth } from "../../hooks/useAuth";
+import { getAuthErrorMessage } from "../../utils/authErrors";
 
 export default function Login() {
+  const navigate = useNavigate();
+  const { signIn, signInWithGoogle, resetPassword } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState("");
+  const [message, setMessage] = useState("");
+  const [submitting, setSubmitting] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Login:", { email, password });
+    setError("");
+    setMessage("");
+    setSubmitting(true);
+
+    try {
+      await signIn(email, password);
+      navigate("/home");
+    } catch (err) {
+      setError(getAuthErrorMessage(err));
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
+  const handleGoogleSignIn = async () => {
+    setError("");
+    setMessage("");
+    setSubmitting(true);
+
+    try {
+      await signInWithGoogle();
+      navigate("/home");
+    } catch (err) {
+      setError(getAuthErrorMessage(err));
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
+  const handlePasswordReset = async (e) => {
+    e.preventDefault();
+
+    if (!email) {
+      setError("Podaj adres email, aby zresetować hasło.");
+      return;
+    }
+
+    setError("");
+    setMessage("");
+    setSubmitting(true);
+
+    try {
+      await resetPassword(email);
+      setMessage(
+        "Link do resetowania hasła został wysłany na podany adres email.",
+      );
+    } catch (err) {
+      setError(getAuthErrorMessage(err));
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
     <>
-      {/* <style>{styles}</style> */}
       <div className="login-page">
         <div className="login-content">
-          {/* Logo */}
           <Link to="/" className="login-logo">
             <Logo size="lg" showSub={true} />
           </Link>
 
-          {/* Card */}
           <div className="login-card">
             <h1 className="login-title">Witaj ponownie</h1>
             <p className="login-subtitle">
               Zaloguj się do swojego profilu nauczyciela.
             </p>
 
+            {error && (
+              <p className="auth-message auth-message-error">{error}</p>
+            )}
+            {message && (
+              <p className="auth-message auth-message-success">{message}</p>
+            )}
+
             <form onSubmit={handleSubmit}>
-              {/* Email */}
               <div className="form-group">
                 <label className="form-label">Email</label>
                 <div className="input-wrapper">
@@ -68,19 +124,25 @@ export default function Login() {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     autoComplete="email"
+                    required
+                    disabled={submitting}
                   />
                 </div>
               </div>
 
-              {/* Password */}
               <div className="form-group">
                 <div className="form-row-between">
                   <label className="form-label" style={{ margin: 0 }}>
                     Hasło
                   </label>
-                  <Link to="/" className="forgot-link">
+                  <button
+                    type="button"
+                    className="forgot-link"
+                    onClick={handlePasswordReset}
+                    disabled={submitting}
+                  >
                     Zapomniałeś hasła?
-                  </Link>
+                  </button>
                 </div>
                 <div className="input-wrapper" style={{ marginTop: 8 }}>
                   <span className="input-icon">
@@ -115,12 +177,15 @@ export default function Login() {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     autoComplete="current-password"
+                    required
+                    disabled={submitting}
                   />
                   <button
                     type="button"
                     className="password-toggle"
                     onClick={() => setShowPassword(!showPassword)}
                     aria-label={showPassword ? "Ukryj hasło" : "Pokaż hasło"}
+                    disabled={submitting}
                   >
                     {showPassword ? (
                       <svg
@@ -176,21 +241,25 @@ export default function Login() {
                 </div>
               </div>
 
-              <button type="submit" className="btn-login">
-                Zaloguj się
+              <button type="submit" className="btn-login" disabled={submitting}>
+                {submitting ? "Logowanie..." : "Zaloguj się"}
               </button>
             </form>
 
-            {/* Divider */}
             <div className="divider">
               <div className="divider-line" />
               <span className="divider-text">lub przez</span>
               <div className="divider-line" />
             </div>
 
-            {/* Social */}
             <div className="social-row">
-              <button className="btn-social">
+              <button
+                type="button"
+                className="btn-social"
+                a
+                onClick={handleGoogleSignIn}
+                disabled={submitting}
+              >
                 <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <path
                     d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
@@ -211,24 +280,14 @@ export default function Login() {
                 </svg>
                 Google
               </button>
-              <button className="btn-social">
-                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"
-                    fill="#1877F2"
-                  />
-                </svg>
-                Facebook
-              </button>
             </div>
 
             <div className="register-row">
-              Nie masz konta? <Link to="/">Zarejestruj się</Link>
+              Nie masz konta? <Link to="/register">Zarejestruj się</Link>
             </div>
           </div>
         </div>
 
-        {/* Footer */}
         <Footer variant="login" />
       </div>
     </>
