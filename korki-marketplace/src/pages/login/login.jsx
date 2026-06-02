@@ -61,7 +61,9 @@ export default function Login() {
 
     try {
       await resetPassword(email);
-      setMessage("Link do resetowania hasła został wysłany na podany adres email.");
+      setMessage(
+        "Link do resetowania hasła został wysłany na podany adres email.",
+      );
     } catch (err) {
       setError(getAuthErrorMessage(err));
     } finally {
@@ -83,7 +85,9 @@ export default function Login() {
               Zaloguj się do swojego profilu nauczyciela.
             </p>
 
-            {error && <p className="auth-message auth-message-error">{error}</p>}
+            {error && (
+              <p className="auth-message auth-message-error">{error}</p>
+            )}
             {message && (
               <p className="auth-message auth-message-success">{message}</p>
             )}
@@ -237,11 +241,7 @@ export default function Login() {
                 </div>
               </div>
 
-              <button
-                type="submit"
-                className="btn-login"
-                disabled={submitting}
-              >
+              <button type="submit" className="btn-login" disabled={submitting}>
                 {submitting ? "Logowanie..." : "Zaloguj się"}
               </button>
             </form>
@@ -256,6 +256,7 @@ export default function Login() {
               <button
                 type="button"
                 className="btn-social"
+                a
                 onClick={handleGoogleSignIn}
                 disabled={submitting}
               >
