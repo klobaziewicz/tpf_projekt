@@ -1,0 +1,185 @@
+/* ── Dopisz na końcu home.css i platform.css ── */
+
+/* Wrapper */
+.nav-avatar-wrapper {
+  position: relative;
+}
+
+/* Pill-button */
+.nav-avatar-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  border: 1.5px solid #ebebeb;
+  border-radius: 40px;
+  padding: 5px 12px 5px 5px;
+  cursor: pointer;
+  font-family: "DM Sans", sans-serif;
+  font-size: 13px;
+  color: #1a1a2e;
+  transition: border-color 0.2s, background 0.2s;
+}
+.nav-avatar-btn:hover,
+.nav-avatar-btn.open {
+  border-color: #3b5bdb;
+  background: #f4f6ff;
+}
+
+/* Zdjęcie z Google/Facebook */
+.nav-avatar-img,
+.nav-dd-avatar-img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+.nav-dd-avatar-img {
+  width: 36px;
+  height: 36px;
+}
+
+/* Fallback — inicjały */
+.nav-avatar-initials {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #3b5bdb, #6c8ff0);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.nav-avatar-name {
+  font-size: 13px;
+  font-weight: 500;
+  max-width: 90px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.nav-avatar-chevron {
+  color: #aaa;
+  flex-shrink: 0;
+  transition: transform 0.2s;
+}
+.nav-avatar-btn.open .nav-avatar-chevron {
+  transform: rotate(180deg);
+}
+
+/* Dropdown */
+.nav-dropdown {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  width: 224px;
+  background: #fff;
+  border: 1px solid #ebebeb;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(26, 26, 46, 0.12);
+  padding: 8px;
+  z-index: 200;
+  animation: navDropFade 0.15s ease;
+}
+@keyframes navDropFade {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Sekcja z info o użytkowniku */
+.nav-dd-user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 10px 12px;
+}
+.nav-dd-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #3b5bdb, #6c8ff0);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.nav-dd-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: #1a1a2e;
+  line-height: 1.3;
+}
+.nav-dd-email {
+  font-size: 11px;
+  color: #aaa;
+  font-weight: 300;
+  margin-top: 1px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 148px;
+}
+
+.nav-dd-divider {
+  height: 1px;
+  background: #f0f0f0;
+  margin: 4px 0;
+}
+
+/* Pozycje w dropdown — Link i button */
+.nav-dd-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 9px 10px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 400;
+  color: #444;
+  text-decoration: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: "DM Sans", sans-serif;
+  text-align: left;
+  transition: background 0.15s, color 0.15s;
+}
+.nav-dd-item svg {
+  flex-shrink: 0;
+  color: #ccc;
+  transition: color 0.15s;
+}
+.nav-dd-item:hover {
+  background: #f4f6ff;
+  color: #1a1a2e;
+}
+.nav-dd-item:hover svg {
+  color: #3b5bdb;
+}
+
+/* Wyloguj */
+.nav-dd-item.danger {
+  color: #e03131;
+}
+.nav-dd-item.danger svg {
+  color: #e03131;
+  opacity: 0.6;
+}
+.nav-dd-item.danger:hover {
+  background: #fff0f0;
+  color: #c92a2a;
+}
+.nav-dd-item.danger:hover svg {
+  color: #c92a2a;
+  opacity: 1;
+}
