@@ -5,6 +5,7 @@ import "./login.css";
 import Footer from "../../components/footer";
 import { useAuth } from "../../hooks/useAuth";
 import { getAuthErrorMessage } from "../../utils/authErrors";
+import { ROLES, getDashboardPath } from "../../constants/roles";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -23,8 +24,8 @@ export default function Login() {
     setSubmitting(true);
 
     try {
-      await signIn(email, password);
-      navigate("/home");
+      const { profile } = await signIn(email, password);
+      navigate(getDashboardPath(profile.role));
     } catch (err) {
       setError(getAuthErrorMessage(err));
     } finally {
@@ -38,8 +39,8 @@ export default function Login() {
     setSubmitting(true);
 
     try {
-      await signInWithGoogle();
-      navigate("/home");
+      const { profile } = await signInWithGoogle(ROLES.STUDENT);
+      navigate(getDashboardPath(profile.role));
     } catch (err) {
       setError(getAuthErrorMessage(err));
     } finally {
