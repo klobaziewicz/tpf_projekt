@@ -6,10 +6,14 @@ function AnalyticsListener() {
   const location = useLocation();
 
   useEffect(() => {
-    ReactGA.send({
-      hitType: "pageview",
-      page: location.pathname + location.search,
-    });
+    try {
+      ReactGA.send({
+        hitType: "pageview",
+        page: location.pathname + location.search,
+      });
+    } catch (e) {
+      console.warn("ReactGA send pageview failed", e);
+    }
   }, [location]);
 
   return null;
