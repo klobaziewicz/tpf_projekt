@@ -78,7 +78,7 @@ const contacts = [
 const BAR_DATA = [18, 12, 22, 8, 24.5, 10, 16, 6, 14, 20, 9, 11];
 
 export default function DashboardStudent() {
-  const [progressView, setProgressView] = useState("Tydniowi");
+  const [progressView, setProgressView] = useState("Tygodniowe");
 
   return (
     <div className="ds-page">
@@ -124,7 +124,7 @@ export default function DashboardStudent() {
                 <p className="ds-progress-sub">Podsumowanie Twojej aktywności w tym miesiącu</p>
               </div>
               <div className="ds-progress-tabs">
-                {["Tydniowi", "Miesiąc"].map((t) => (
+                {["Tygodniowe", "Miesięczne"].map((t) => (
                   <button
                     key={t}
                     className={`ds-tab ${progressView === t ? "active" : ""}`}
