@@ -1,6 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <script>
+      (function() {
+        const ignoreErrors = [
+          "The user aborted a request",
+          "popup-closed-by-user",
+          "auth/popup-closed-by-user",
+        ];
+
+        function shouldIgnore(message) {
+          if (!message || typeof message !== 'string') return false;
+          return ignoreErrors.some(err => message.includes(err));
+        }
+
+        window.addEventListener("unhandledrejection", (event) => {
+          const message = event.reason?.message || String(event.reason || '');
+          const code = event.reason?.code;
+          if (shouldIgnore(message) || shouldIgnore(code)) {
+            event.preventDefault();
+            event.stopImmediatePropagation();
+            console.warn("Caught and suppressed unhandled rejection:", message);
+          }
+        }, true);
+
+        window.addEventListener("error", (event) => {
+          const message = event.message || "";
+          if (shouldIgnore(message)) {
+            event.preventDefault();
+            event.stopImmediatePropagation();
+            console.warn("Caught and suppressed error:", message);
+          }
+        }, true);
+      })();
+    </script>
     <meta charset="utf-8" />
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />

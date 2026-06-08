@@ -2,9 +2,10 @@ import { useState, useRef, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Logo from "./logo";
 import { useAuth } from "../hooks/useAuth";
+import { getDashboardPath } from "../constants/roles";
 
 export default function Navbar({ activeLink }) {
-  const { user, loading, logOut } = useAuth();
+  const { user, userProfile, loading, logOut } = useAuth();
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
   const navigate = useNavigate();
@@ -41,7 +42,7 @@ export default function Navbar({ activeLink }) {
 
   return (
     <nav className="nav">
-      <Link to="/home" className="nav-logo">
+      <Link to="/" className="nav-logo">
         <Logo size="md" showSub={false} />
       </Link>
 
@@ -55,12 +56,15 @@ export default function Navbar({ activeLink }) {
           </Link>
         </li>
         <li>
-          <a href="/home#how-it-works">Jak to Działa</a>
+          <a href="/#how-it-works">Jak to Działa</a>
         </li>
       </ul>
 
       <div className="nav-right">
-        {!loading && user ? (
+        {loading ? (
+          /* ── ŁADOWANIE ── */
+          <div className="nav-loading-placeholder" style={{ width: 120, height: 38 }} />
+        ) : user ? (
           /* ── ZALOGOWANY ── */
           <div className="nav-avatar-wrapper" ref={dropdownRef}>
             <button
@@ -123,7 +127,7 @@ export default function Navbar({ activeLink }) {
                 <div className="nav-dd-divider" />
 
                 <Link
-                  to="/dashboard"
+                  to={userProfile ? getDashboardPath(userProfile.role) : "/"}
                   className="nav-dd-item"
                   onClick={() => setDropdownOpen(false)}
                 >
@@ -180,7 +184,7 @@ export default function Navbar({ activeLink }) {
         ) : (
           /* ── NIEZALOGOWANY ── */
           <>
-            <Link to="/" className="btn-ghost">
+            <Link to="/login" className="btn-ghost">
               Zaloguj się
             </Link>
             <Link to="/register" className="btn-primary nav-register">
