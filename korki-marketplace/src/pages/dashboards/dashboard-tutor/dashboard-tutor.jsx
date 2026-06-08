@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import Navbar from "../../../components/navbar";
-import Footer from "../../../components/footer";
+import Navbar from "../../../components/Navbar";
+import Footer from "../../../components/Footer";
 import "./dashboard-tutor.css";
 
 export default function DashboardTutor() {
