@@ -4,7 +4,7 @@ import Footer from "../../../components/footer.jsx";
 import "./dashboard-tutor.css";
 
 export default function DashboardTutor() {
-  const [earnings, setEarnings] = useState({
+  const [earnings] = useState({
     total: "4 250,00",
     lessons: 34,
     rate: 125
