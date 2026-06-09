@@ -136,7 +136,7 @@ export default function Register() {
   if (step === 2) {
     return (
       <div className="tutor-app register-page">
-        <Navbar activeLink="platforma" />
+        <Navbar activeLink="" />
 
         <section className="reg-account-step">
           <button
@@ -260,7 +260,7 @@ export default function Register() {
 
   return (
     <div className="tutor-app register-page">
-      <Navbar activeLink="platforma" />
+      <Navbar activeLink="" />
 
       <section className="reg-hero">
         <span className="reg-hero-badge">Wybierz swoją ścieżkę</span>

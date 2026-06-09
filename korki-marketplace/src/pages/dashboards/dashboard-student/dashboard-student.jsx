@@ -1,198 +1,214 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "../../../components/navbar";
 import Footer from "../../../components/footer";
 import "./dashboard-student.css";
 
-const stats = [
-  { icon: "📚", value: "24", label: "Ukończone lekcje", delta: "+3" },
-  { icon: "⏱", value: "36h", label: "Godziny nauki", delta: "+5h" },
-  { icon: "⭐", value: "4.8", label: "Średnia ocen", delta: "+0.2" },
-  { icon: "🔥", value: "12", label: "Dni z rzędu", delta: "+2" },
-];
-
-const schedule = [
-  { day: "29", weekday: "Czw", subject: "Mechanika klasyczna", tutor: "Anna Wiśniewska · Fizyka", time: "14:00–15:30" },
-  { day: "31", weekday: "Sob", subject: "Angielski B2 — gramatyka", tutor: "Ewa Jabłońska · Języki", time: "10:00–11:00" },
-  { day: "03", weekday: "Wt", subject: "Statystyka — egzamin próbny", tutor: "Jakub Malinowski · Matematyka", time: "16:00–17:30", highlight: true },
-];
-
-const progress = [
-  { label: "Matematyka", pct: 78, color: "#3b5bdb" },
-  { label: "Fizyka", pct: 55, color: "#2f9e44" },
-  { label: "Angielski", pct: 90, color: "#f59f00" },
-  { label: "Statystyka", pct: 42, color: "#fa5252" },
-];
-
-const completed = [
-  { icon: "➗", bg: "#eef2ff", subject: "Całki nieoznaczone", meta: "24 maja · Maria Z. · 90 min", stars: 5 },
-  { icon: "⚡", bg: "#e6f4ea", subject: "Optyka geometryczna", meta: "21 maja · Anna W. · 90 min", stars: 4 },
-  { icon: "📖", bg: "#fff8e6", subject: "Angielski — czas przyszły", meta: "18 maja · Ewa J. · 60 min", stars: 5 },
-];
-
-const reviews = [
+const lessons = [
   {
-    initials: "MZ", color: "#3b5bdb", name: "Maria Zawadzka", role: "Matematyka · 24 maja", stars: 5,
-    text: "Anna robi świetne postępy! Opanowała całki nieoznaczone bardzo szybko. Polecam kontynuację przed egzaminem.",
+    id: 1,
+    tag: "DZIŚ 16:30",
+    tagType: "today",
+    title: "Analiza Matematyczna",
+    tutor: "dr Anna Kwiatkowska",
+    avatarInitials: "AK",
+    avatarColor: "#3b5bdb",
+    action: "Dołącz za 45 minut",
+    actionIcon: "🎥",
+    icon: "🎥",
   },
   {
-    initials: "AW", color: "#2f9e44", name: "Anna Wiśniewska", role: "Fizyka · 21 maja", stars: 4,
-    text: "Dobra praca z optyką — warto jeszcze poćwiczyć zadania na soczewki. Materiały wysłałam na maila.",
+    id: 2,
+    tag: "JUTRO 10:00",
+    tagType: "tomorrow",
+    title: "Literatura Współczesna",
+    tutor: "mgr Marek Nowak",
+    avatarInitials: "MN",
+    avatarColor: "#2f9e44",
+    action: "Przygotuj lekturę",
+    actionIcon: "📖",
+    icon: "📖",
   },
 ];
 
-function Stars({ count, total = 5 }) {
-  return (
-    <div className="ds-stars">
-      {Array.from({ length: total }, (_, i) => (
-        <span key={i} className={i < count ? "star-f" : "star-e"}>★</span>
-      ))}
-    </div>
-  );
-}
+const homework = [
+  {
+    id: 1,
+    title: "Zestaw zadań: Trygonometria",
+    due: "Termin: 25:45",
+    status: "ROZPOCZNIJ",
+    statusType: "start",
+    icon: "⚠️",
+    iconBg: "#fff0f0",
+    iconColor: "#fa5252",
+  },
+  {
+    id: 2,
+    title: "Esej: Analiza 'Kordiana'",
+    due: "Termin: 27.04.85",
+    status: null,
+    icon: "📅",
+    iconBg: "#f4f6ff",
+    iconColor: "#3b5bdb",
+  },
+  {
+    id: 3,
+    title: "Słówka: Unit 4 —",
+    due: "Oddane",
+    status: null,
+    done: true,
+    icon: "✓",
+    iconBg: "#e6f4ea",
+    iconColor: "#2f9e44",
+  },
+];
+
+const materials = [
+  { id: 1, icon: "📄", type: "PDF", title: "Wzory skróconego mnożenia", subject: "MATEMATYKA · 1.2 MB" },
+  { id: 2, icon: "▶️", type: "VIDEO", title: "Wykład: Romantyzm polski", subject: "JĘZYK POLSKI · 15:34 MIN" },
+  { id: 3, icon: "📝", type: "DOC", title: "Słownictwo: Business English", subject: "ANGIELSKI · 8.5 KB" },
+];
+
+const contacts = [
+  { initials: "AK", color: "#3b5bdb" },
+  { initials: "MN", color: "#2f9e44" },
+  { initials: "EJ", color: "#f59f00" },
+];
+
+const BAR_DATA = [18, 12, 22, 8, 24.5, 10, 16, 6, 14, 20, 9, 11];
 
 export default function DashboardStudent() {
+  const [progressView, setProgressView] = useState("Tygodniowe");
+
   return (
     <div className="ds-page">
       <Navbar />
 
       <div className="ds-body">
-        <div className="ds-topbar">
-          <div>
-            <h1 className="ds-greeting">Dzień dobry, Anno 👋</h1>
-            <p className="ds-sub">Wtorek, 27 maja 2025 — masz dziś 1 zaplanowaną lekcję</p>
-          </div>
-          <div className="ds-topbar-right">
-            <div className="ds-search-pill">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#aaa" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-              Szukaj...
-            </div>
-            <div className="ds-icon-btn">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#666" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
-              <div className="ds-notif-dot" />
-            </div>
-            <div className="ds-icon-btn">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#666" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-            </div>
-          </div>
-        </div>
+        <div className="ds-main">
 
-        <div className="ds-stats">
-          {stats.map((s) => (
-            <div key={s.label} className="ds-stat-card">
-              <div className="ds-stat-top">
-                <div className="ds-stat-icon">{s.icon}</div>
-                <span className="ds-stat-delta">{s.delta}</span>
-              </div>
-              <div className="ds-stat-num">{s.value}</div>
-              <div className="ds-stat-label">{s.label}</div>
-            </div>
-          ))}
-        </div>
-
-        <div className="ds-next-lesson">
-          <span className="ds-nl-badge">Następna lekcja</span>
-          <h2 className="ds-nl-title">Analiza matematyczna — całki</h2>
-          <p className="ds-nl-sub">Moduł 4 z 6 · Całki oznaczone i ich zastosowania</p>
-          <div className="ds-nl-meta">
-            <span>📅 Dziś, 27 maja</span>
-            <span>🕔 17:00 – 18:30</span>
-            <span>🎥 Online (Zoom)</span>
-          </div>
-          <div className="ds-nl-footer">
-            <div className="ds-nl-tutor">
-              <img
-                className="ds-nl-avatar"
-                src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=80"
-                alt="Maria"
-              />
-              <div>
-                <div className="ds-nl-tutor-name">Maria Zawadzka</div>
-                <div className="ds-nl-tutor-role">Mgr Matematyki, AGH</div>
-              </div>
-            </div>
-            <button className="ds-nl-btn">Dołącz do lekcji →</button>
-          </div>
-        </div>
-
-        <div className="ds-two-col">
-          <div className="ds-card">
-            <div className="ds-card-header">
-              <span className="ds-card-title">Nadchodzące zajęcia</span>
-              <Link to="#" className="ds-card-link">Zobacz wszystkie →</Link>
-            </div>
-            {schedule.map((s) => (
-              <div key={s.day} className="ds-sched-item">
-                <div className="ds-sched-date" style={s.highlight ? { background: "#fff8e6" } : {}}>
-                  <span className="ds-sched-num" style={s.highlight ? { color: "#f59f00" } : {}}>{s.day}</span>
-                  <span className="ds-sched-day">{s.weekday}</span>
-                </div>
-                <div className="ds-sched-info">
-                  <div className="ds-sched-subject">{s.subject}</div>
-                  <div className="ds-sched-tutor">{s.tutor}</div>
-                </div>
-                <div className="ds-sched-time">{s.time}</div>
-              </div>
-            ))}
+          <div className="ds-hero">
+            <h1 className="ds-hero-title">Witaj ponownie, Aleksandrze.</h1>
+            <p className="ds-hero-sub">Twoja ścieżka edukacyjna wygląda dziś obiecująco. Masz 2 nadchodzące lekcje.</p>
           </div>
 
-          <div className="ds-card">
-            <div className="ds-card-header">
-              <span className="ds-card-title">Postępy</span>
-              <Link to="#" className="ds-card-link">Szczegóły →</Link>
+          <section className="ds-section">
+            <div className="ds-section-header">
+              <h2 className="ds-section-title">Moje Lekcje</h2>
+              <Link to="#" className="ds-section-link">Zobacz kalendarz →</Link>
             </div>
-            {progress.map((p) => (
-              <div key={p.label} className="ds-progress-item">
-                <div className="ds-progress-header">
-                  <span className="ds-progress-label">{p.label}</span>
-                  <span className="ds-progress-pct">{p.pct}%</span>
-                </div>
-                <div className="ds-progress-bg">
-                  <div className="ds-progress-fill" style={{ width: `${p.pct}%`, background: p.color }} />
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="ds-bottom-row">
-          <div className="ds-card">
-            <div className="ds-card-header">
-              <span className="ds-card-title">Ostatnie lekcje</span>
-              <Link to="#" className="ds-card-link">Historia →</Link>
-            </div>
-            {completed.map((c) => (
-              <div key={c.subject} className="ds-comp-item">
-                <div className="ds-comp-icon" style={{ background: c.bg }}>{c.icon}</div>
-                <div>
-                  <div className="ds-comp-subject">{c.subject}</div>
-                  <div className="ds-comp-meta">{c.meta}</div>
-                </div>
-                <Stars count={c.stars} />
-                <div className="ds-comp-check">✓</div>
-              </div>
-            ))}
-          </div>
-
-          <div className="ds-card">
-            <div className="ds-card-header">
-              <span className="ds-card-title">Opinie od nauczycieli</span>
-              <Link to="#" className="ds-card-link">Wszystkie →</Link>
-            </div>
-            {reviews.map((r) => (
-              <div key={r.name} className="ds-review-card">
-                <div className="ds-review-top">
-                  <div className="ds-review-avatar" style={{ background: r.color }}>{r.initials}</div>
-                  <div>
-                    <div className="ds-review-name">{r.name}</div>
-                    <div className="ds-review-role">{r.role}</div>
+            <div className="ds-lessons-grid">
+              {lessons.map((l) => (
+                <div key={l.id} className="ds-lesson-card">
+                  <div className="ds-lesson-top">
+                    <span className={`ds-lesson-tag ${l.tagType}`}>{l.tag}</span>
+                    <span className="ds-lesson-type-icon">{l.icon}</span>
                   </div>
-                  <Stars count={r.stars} />
+                  <h3 className="ds-lesson-title">{l.title}</h3>
+                  <p className="ds-lesson-tutor">Prowadzący: {l.tutor}</p>
+                  <div className="ds-lesson-footer">
+                    <div className="ds-lesson-avatar" style={{ background: l.avatarColor }}>
+                      {l.avatarInitials}
+                    </div>
+                    <span className="ds-lesson-action">{l.action}</span>
+                  </div>
                 </div>
-                <p className="ds-review-text">{r.text}</p>
+              ))}
+            </div>
+          </section>
+
+          <section className="ds-section ds-progress-section">
+            <div className="ds-progress-top">
+              <div>
+                <h2 className="ds-section-title">Moje Postępy</h2>
+                <p className="ds-progress-sub">Podsumowanie Twojej aktywności w tym miesiącu</p>
               </div>
-            ))}
-          </div>
+              <div className="ds-progress-tabs">
+                {["Tygodniowe", "Miesięczne"].map((t) => (
+                  <button
+                    key={t}
+                    className={`ds-tab ${progressView === t ? "active" : ""}`}
+                    onClick={() => setProgressView(t)}
+                  >
+                    {t}
+                  </button>
+                ))}
+              </div>
+            </div>
+            <div className="ds-progress-hours">
+              <span className="ds-hours-label">GODZINY NAUKI</span>
+              <div className="ds-hours-value">24.5h</div>
+              <span className="ds-hours-delta">↑ +12% vs zeszły tydzień</span>
+            </div>
+            <div className="ds-bar-chart">
+              {BAR_DATA.map((h, i) => (
+                <div key={i} className="ds-bar-col">
+                  <div
+                    className={`ds-bar ${i === 4 ? "active" : ""}`}
+                    style={{ height: `${(h / 25) * 100}%` }}
+                  />
+                </div>
+              ))}
+            </div>
+          </section>
+
+          <section className="ds-section">
+            <h2 className="ds-section-title">Ostatnie Materiały</h2>
+            <div className="ds-materials-grid">
+              {materials.map((m) => (
+                <div key={m.id} className="ds-material-card">
+                  <div className="ds-material-icon">{m.icon}</div>
+                  <div className="ds-material-title">{m.title}</div>
+                  <div className="ds-material-subject">{m.subject}</div>
+                </div>
+              ))}
+            </div>
+          </section>
         </div>
+
+        <aside className="ds-sidebar">
+          <div className="ds-card">
+            <h2 className="ds-card-title">Zadania Domowe</h2>
+            <div className="ds-hw-list">
+              {homework.map((h) => (
+                <div key={h.id} className={`ds-hw-item ${h.done ? "done" : ""}`}>
+                  <div className="ds-hw-icon" style={{ background: h.iconBg, color: h.iconColor }}>
+                    {h.icon}
+                  </div>
+                  <div className="ds-hw-info">
+                    <div className="ds-hw-title">{h.title}</div>
+                    <div className="ds-hw-due">{h.due}</div>
+                    {h.status && (
+                      <span className={`ds-hw-status ${h.statusType}`}>{h.status}</span>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+            <button className="ds-hw-all-btn">Wszystkie zadania (12)</button>
+          </div>
+
+          <div className="ds-card ds-tip-card">
+            <span className="ds-tip-label">PORADA EDUKACYJNA</span>
+            <h3 className="ds-tip-title">Metoda Pomodoro</h3>
+            <p className="ds-tip-text">
+              Pracuj przez 25 minut, a potem zrób 5 minut przerwy. Ta dwutaktowna zwięksaza koncentrację przy trudnych tematach.
+            </p>
+          </div>
+
+          <div className="ds-card">
+            <h2 className="ds-card-title">SZYBKI KONTAKT</h2>
+            <div className="ds-contacts-row">
+              {contacts.map((c) => (
+                <div key={c.initials} className="ds-contact-avatar" style={{ background: c.color }}>
+                  {c.initials}
+                </div>
+              ))}
+              <div className="ds-contact-more">+9</div>
+            </div>
+            <button className="ds-msg-btn">Wyślij wiadomość</button>
+          </div>
+        </aside>
       </div>
 
       <Footer />
