@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import Logo from "./logo";
 import { useAuth } from "../hooks/useAuth";
 import { getDashboardPath } from "../constants/roles";
@@ -9,6 +9,7 @@ export default function Navbar({ activeLink }) {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
   const navigate = useNavigate();
+  const location = useLocation();
 
   // Zamknij dropdown po kliknięciu poza nim
   useEffect(() => {
@@ -34,6 +35,12 @@ export default function Navbar({ activeLink }) {
     return user?.email?.[0].toUpperCase() ?? "?";
   };
 
+  // Funkcja pomocnicza sprawdzająca, czy link jest aktywny
+  const isActive = (path) => {
+    // Sprawdza dokładną ścieżkę LUB hash (dla "Jak to działa")
+    return location.pathname + location.hash === path;
+  }
+
   const handleLogOut = async () => {
     setDropdownOpen(false);
     await logOut();
@@ -56,7 +63,7 @@ export default function Navbar({ activeLink }) {
           </Link>
         </li>
         <li>
-          <a href="/#how-it-works">Jak to Działa</a>
+          <a href="/#how-it-works" className={isActive("/#how-it-works") ? "nav-active" : undefined}>Jak to Działa</a>
         </li>
       </ul>
 

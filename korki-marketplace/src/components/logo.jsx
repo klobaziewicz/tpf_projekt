@@ -13,7 +13,7 @@ export default function Logo({ size = "md", showSub = false, href = "#", light =
   const s = sizes[size] || sizes.md;
 
   return (
-    <Link to={href} className="logo-wrap">
+    <Link to="/" className="logo-wrap">
       <span className="logo-text" style={{ fontSize: s.text, color: light ? "#fff" : "#1a1a2e" }}>
         Twoje<span style={{ color: light ? "#6c8ff0" : "#3b5bdb" }}>Korki</span>
       </span>
