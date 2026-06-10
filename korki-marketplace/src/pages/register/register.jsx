@@ -313,7 +313,7 @@ export default function Register() {
 
       <section className="reg-how" id="how-it-works">
         <div className="reg-how-inner">
-          <h2 className="reg-section-title">Jak działa Scholar Blue?</h2>
+          <h2 className="reg-section-title">Jak działają TwojeKorki?</h2>
           <div className="reg-section-underline" />
           <div className="reg-steps">
             {HOW_STEPS.map((step) => (
@@ -333,13 +333,13 @@ export default function Register() {
         <div className="reg-quote-card">
           <div className="reg-quote-content">
             <blockquote className="reg-quote-text">
-              „Edukacja to klucz do sukcesu, a Scholar Blue to droga do niego.”
+              „Edukacja to klucz do sukcesu, a TwojeKorki to droga do niego.”
             </blockquote>
             <div className="reg-quote-author">
               <div className="reg-quote-avatar">AN</div>
               <div>
                 <div className="reg-quote-name">Dr Anna Nowak</div>
-                <div className="reg-quote-role">Główny Metodyk Scholar Blue</div>
+                <div className="reg-quote-role">Główny Metodyk TwojeKorki</div>
               </div>
             </div>
           </div>
