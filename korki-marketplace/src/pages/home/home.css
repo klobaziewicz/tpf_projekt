@@ -543,7 +543,7 @@ a.nav-register {
 
 /* FOOTER */
 .footer {
-  background: var(--color-text-primary);
+  background: #1a1a2e;
   color: var(--color-text-inverse);
   padding: 40px var(--container-pad-d);
   display: flex;
@@ -557,14 +557,6 @@ a.nav-register {
   .footer { padding-inline: var(--container-pad-m); }
 }
 
-.footer-logo {
-  font-family: var(--font-display);
-  font-size: var(--text-h3);
-  font-weight: var(--weight-700);
-}
-.footer-logo span {
-  color: var(--color-primary-mid);
-}
 .footer-copy {
   font-size: var(--text-xs);
   color: var(--color-text-muted);
