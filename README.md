@@ -1,4 +1,4 @@
-<img width="1500" height="2332" alt="Page On The Fly - June 10, 2026 - KRZYSZTOF Lobaziewicz-ScrollMap-2026-06-10" src="https://github.com/user-attachments/assets/cdcac0de-fe6a-45b0-baac-79fbdc0268f3" /># 📚 Korki Marketplace
+# 📚 Korki Marketplace
 
 **TwojeKorki.pl** to nowoczesna platforma typu marketplace (model B2C/C2C) łącząca uczniów i rodziców poszukujących korepetytorów z nauczycielami oferującymi prywatne lekcje. Umożliwia wygodne wyszukiwanie i rezerwację terminów lekcji, komunikację oraz kompleksowe zarządzanie procesem edukacji poprzez dedykowane panele (Dashboardy) dla ucznia, rodzica i nauczyciela.
 
