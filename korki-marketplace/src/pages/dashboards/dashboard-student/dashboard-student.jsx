@@ -12,7 +12,7 @@ const lessons = [
     title: "Analiza Matematyczna",
     tutor: "dr Anna Kwiatkowska",
     avatarInitials: "AK",
-    avatarColor: "#3b5bdb",
+    avatarColor: "var(--color-primary)",
     action: "Dołącz za 45 minut",
     actionIcon: "🎥",
     icon: "🎥",
@@ -24,7 +24,7 @@ const lessons = [
     title: "Literatura Współczesna",
     tutor: "mgr Marek Nowak",
     avatarInitials: "MN",
-    avatarColor: "#2f9e44",
+    avatarColor: "var(--color-success)",
     action: "Przygotuj lekturę",
     actionIcon: "📖",
     icon: "📖",
@@ -39,8 +39,8 @@ const homework = [
     status: "ROZPOCZNIJ",
     statusType: "start",
     icon: "⚠️",
-    iconBg: "#fff0f0",
-    iconColor: "#fa5252",
+    iconBg: "var(--color-error-light)",
+    iconColor: "var(--color-error)",
   },
   {
     id: 2,
@@ -48,8 +48,8 @@ const homework = [
     due: "Termin: 27.04.85",
     status: null,
     icon: "📅",
-    iconBg: "#f4f6ff",
-    iconColor: "#3b5bdb",
+    iconBg: "var(--color-primary-light)",
+    iconColor: "var(--color-primary)",
   },
   {
     id: 3,
@@ -58,8 +58,8 @@ const homework = [
     status: null,
     done: true,
     icon: "✓",
-    iconBg: "#e6f4ea",
-    iconColor: "#2f9e44",
+    iconBg: "var(--color-success-light)",
+    iconColor: "var(--color-success)",
   },
 ];
 
@@ -70,9 +70,9 @@ const materials = [
 ];
 
 const contacts = [
-  { initials: "AK", color: "#3b5bdb" },
-  { initials: "MN", color: "#2f9e44" },
-  { initials: "EJ", color: "#f59f00" },
+  { initials: "AK", color: "var(--color-primary)" },
+  { initials: "MN", color: "var(--color-success)" },
+  { initials: "EJ", color: "var(--color-accent)" },
 ];
 
 const BAR_DATA = [18, 12, 22, 8, 24.5, 10, 16, 6, 14, 20, 9, 11];

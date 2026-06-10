@@ -71,17 +71,17 @@ function CertIcon({ type }) {
       <svg viewBox="0 0 24 24" fill="none" width="18" height="18">
         <path
           d="M12 3L2 8l10 5 10-5-10-5z"
-          stroke="#3b5bdb"
+          stroke="var(--color-primary)"
           strokeWidth="1.5"
           strokeLinejoin="round"
         />
         <path
           d="M6 11v4c0 0 2.5 3 6 3s6-3 6-3v-4"
-          stroke="#3b5bdb"
+          stroke="var(--color-primary)"
           strokeWidth="1.5"
           strokeLinecap="round"
         />
-        <path d="M20 8v6" stroke="#3b5bdb" strokeWidth="1.5" strokeLinecap="round" />
+        <path d="M20 8v6" stroke="var(--color-primary)" strokeWidth="1.5" strokeLinecap="round" />
       </svg>
     );
   }
@@ -89,13 +89,13 @@ function CertIcon({ type }) {
     <svg viewBox="0 0 24 24" fill="none" width="18" height="18">
       <path
         d="M12 3l7 3v6c0 3.5-3 6-7 9-4-3-7-5.5-7-9V6l7-3z"
-        stroke="#3b5bdb"
+        stroke="var(--color-primary)"
         strokeWidth="1.5"
         strokeLinejoin="round"
       />
       <path
         d="M9 12l2 2 4-4"
-        stroke="#3b5bdb"
+        stroke="var(--color-primary)"
         strokeWidth="1.5"
         strokeLinecap="round"
         strokeLinejoin="round"

@@ -153,7 +153,7 @@ export default function Search() {
               <p>Zawęź wyszukiwanie</p>
             </div>
             <span className="sidebar-filter-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" width="20" height="20" stroke="#3b5bdb" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <svg viewBox="0 0 24 24" fill="none" width="20" height="20" stroke="var(--color-primary)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <line x1="4" y1="21" x2="4" y2="14" />
                 <line x1="4" y1="10" x2="4" y2="3" />
                 <line x1="12" y1="21" x2="12" y2="12" />

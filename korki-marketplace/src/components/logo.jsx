@@ -14,8 +14,8 @@ export default function Logo({ size = "md", showSub = false, href = "#", light =
 
   return (
     <Link to="/" className="logo-wrap">
-      <span className="logo-text" style={{ fontSize: s.text, color: light ? "#fff" : "#1a1a2e" }}>
-        Twoje<span style={{ color: light ? "#6c8ff0" : "#3b5bdb" }}>Korki</span>
+      <span className="logo-text" style={{ fontSize: s.text, color: light ? "#fff" : "var(--color-text-primary)" }}>
+        Twoje<span style={{ color: light ? "var(--color-primary-mid)" : "var(--color-primary)" }}>Korki</span>
       </span>
       {showSub && (
         <span className="logo-sub" style={{ fontSize: s.sub }}>
