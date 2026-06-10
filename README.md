@@ -10,6 +10,9 @@
 * 🎨 **Projekt Figma:** [Figma Design System & Makiety](https://www.figma.com/design/faij0qEutM8qtd59RSRbu7/TwojeKorki-pl?node-id=0-1&t=7IYyyL3O3JXVTDpa-1)
 * 📋 **Dokumentacja (Checklista):** [Google Docs](https://docs.google.com/document/d/1P3CQ-kKfGa8OT12JZqVS_p1CX8SQKhsU5vA1ucU_MSI/edit?usp=sharing)
 
+Raport zgodności znajduje się w pod ścieżką 
+korki-marketplace/raport_zgodnosci.md
+
 ---
 
 ## 🧩 Funkcjonalności
