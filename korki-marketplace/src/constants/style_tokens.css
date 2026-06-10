@@ -8,7 +8,7 @@
     --color-secondary:      #565E74;   /* Secondary text, ikony, subheadings */
     --color-secondary-light:#ECEDF0;   /* Subtelne tła, divider */
     
-    --color-accent:         #924700;   /* Accent — zgodnie ze specyfikacją */
+    --color-accent:         #f59f00;   /* Accent — został zmieniony względem oryginału */
     --color-accent-light:   #FDF0E3;   /* Tło accent */
     --color-accent-mid:     #F2C68A;   /* Border accent */
     
