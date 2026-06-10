@@ -167,7 +167,7 @@ export default function Search() {
           </div>
 
           <div className="filter-section">
-            <h3>PODKATEGORIA</h3>
+            <h4>PODKATEGORIA</h4>
             <ul className="subcategory-list">
               {subcategories.map((sub) => (
                 <li key={sub.id}>
@@ -185,7 +185,7 @@ export default function Search() {
           </div>
 
           <div className="filter-section">
-            <h3>SPECIALIZATION</h3>
+            <h4>SPECJALIZACJA</h4>
             <div className="spec-tags">
               {specializations.map((spec) => (
                 <button
@@ -226,7 +226,6 @@ export default function Search() {
         <main className="search-main">
           <div className="search-header">
             <div className="search-header-text">
-              <span className="search-meta">(10 opinii)</span>
               <h1 className="search-title">Znaleziono 32 korepetytorów</h1>
               <p className="search-subtitle">
                 Dopasowane do Twoich kryteriów dla Matematyki i Fizyki na
