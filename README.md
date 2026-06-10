@@ -1,12 +1,14 @@
 # 📚 Korki Marketplace
 
-Platforma webowa umożliwiająca wyszukiwanie korepetytorów oraz zarządzanie profilem ucznia, rodzica i tutora.
+**TwojeKorki.pl** to nowoczesna platforma typu marketplace (model B2C/C2C) łącząca uczniów i rodziców poszukujących korepetytorów z nauczycielami oferującymi prywatne lekcje. Umożliwia wygodne wyszukiwanie i rezerwację terminów lekcji, komunikację oraz kompleksowe zarządzanie procesem edukacji poprzez dedykowane panele (Dashboardy) dla ucznia, rodzica i nauczyciela.
 
 ---
 
-## 🚀 Demo
+## 🔗 Przydatne linki
 
-👉 https://github.com/klobaziewicz/tpf_projekt
+* 🚀 **Aplikacja (Vercel):** [tpf-projekt-itft.vercel.app](https://tpf-projekt-itft.vercel.app/)
+* 🎨 **Projekt Figma:** [Figma Design System & Makiety](https://www.figma.com/design/faij0qEutM8qtd59RSRbu7/TwojeKorki-pl?node-id=0-1&t=7IYyyL3O3JXVTDpa-1)
+* 📋 **Dokumentacja (Checklista):** [Google Docs](https://docs.google.com/document/d/1P3CQ-kKfGa8OT12JZqVS_p1CX8SQKhsU5vA1ucU_MSI/edit?usp=sharing)
 
 ---
 
