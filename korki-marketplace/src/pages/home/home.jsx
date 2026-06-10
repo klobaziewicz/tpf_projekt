@@ -38,7 +38,7 @@ const testimonials = [
     text: "Polecam serdecznie wszystkim! Twoje Korki to świetna platforma — znalazłam idealnego nauczyciela matematyki dla mojej córki w ciągu kilku minut.",
     name: "Michał Nowak",
     role: "Rodzic ucznia, Kraków",
-    avatarColor: "#3b5bdb",
+    avatarColor: "var(--color-primary)",
     initials: "MN",
   },
   {
@@ -46,7 +46,7 @@ const testimonials = [
     text: "Dzięki tej platformie zdałem maturę z fizyki na 95%! Pan Kowalski to niesamowity nauczyciel, który tłumaczy wszystko prostym językiem.",
     name: "Julia Kowalska",
     role: "Maturzystka, Warszawa",
-    avatarColor: "#2f9e44",
+    avatarColor: "var(--color-success)",
     initials: "JK",
   },
 ];

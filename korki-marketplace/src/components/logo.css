@@ -7,24 +7,24 @@
 }
 
 .logo-text {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-display);
   font-style: normal;
-  font-weight: 700;
-  color: #1a1a2e;
-  letter-spacing: -0.3px;
+  font-weight: var(--weight-bold);
+  color: var(--color-text-primary);
+  letter-spacing: var(--tracking-tight);
   white-space: nowrap;
 }
 
 .logo-text span {
-  color: #3b5bdb;
+  color: var(--color-primary);
 }
 
 .logo-sub {
-  font-family: 'DM Sans', sans-serif;
+  font-family: var(--font-body);
   font-style: normal;
-  font-weight: 600;
-  letter-spacing: 3px;
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-widest);
   text-transform: uppercase;
-  color: #888;
+  color: var(--color-text-muted);
   margin-top: 3px;
 }
