@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "../../components/navbar";
 import "../home/home.css";
+import Footer from "../../components/footer";
 import "./search.css";
 
 const subcategories = [
   { id: "math", name: "Matematyka", icon: "Σ" },
-  { id: "phys", name: "Fizyka", icon: "⚛" },
+  { id: "phys", name: "Fizyka", icon: "🔬" },
   { id: "lang", name: "Języki", icon: "文" },
 ];
 
@@ -351,6 +352,8 @@ export default function Search() {
           />
         </svg>
       </button>
+        {/* FOOTER */}
+        <Footer />
     </div>
   );
 }

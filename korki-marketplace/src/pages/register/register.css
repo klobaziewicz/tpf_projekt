@@ -24,18 +24,17 @@
 }
 
 .reg-hero-title {
-  font-family: "Playfair Display", serif;
+  font-family: var(--font-display);
   font-size: clamp(36px, 5vw, 52px);
   font-weight: 700;
-  color: #1a1a2e;
+  color: var(--color-text-primary);
   letter-spacing: -0.5px;
   line-height: 1.15;
   margin-bottom: 18px;
 }
 
-.reg-hero-title em {
-  font-style: italic;
-  color: #3b5bdb;
+.reg-hero-title bl {
+  color: var(--color-primary);
 }
 
 .reg-hero-desc {
