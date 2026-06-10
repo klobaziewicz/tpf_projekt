@@ -143,7 +143,7 @@ export default function DashboardParent() {
             <div className="dp-card">
               <div className="dp-card-header">
                 <h2 className="dp-card-title-lg">Ostatnie Wiadomości</h2>
-                <Link to="#" className="dp-section-link">WIĘ CEJ</Link>
+                <Link to="#" className="dp-section-link">WIĘCEJ</Link>
               </div>
               <div className="dp-messages-list">
                 {messages.map((msg) => (
