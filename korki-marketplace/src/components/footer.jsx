@@ -33,7 +33,7 @@ export default function Footer({ variant }) {
     <footer className="footer">
       <div>
         <div className="footer-logo">
-          <Logo size="md" light={true} showSub={false} />
+          <Logo size="lg" light={true} showSub={false} />
         </div>
 
         <div className="footer-copy">

@@ -32,8 +32,8 @@
   margin-bottom: var(--space-18);
 }
 
-.reg-hero-title em {
-  font-style: italic;
+
+.reg-hero-title bl {
   color: var(--color-primary);
 }
 

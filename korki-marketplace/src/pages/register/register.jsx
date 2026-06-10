@@ -265,7 +265,7 @@ export default function Register() {
       <section className="reg-hero">
         <span className="reg-hero-badge">Wybierz swoją ścieżkę</span>
         <h1 className="reg-hero-title">
-          Dołącz do <em>Scholar Blue</em>
+          Dołącz do naszej <bl>platformy</bl>
         </h1>
         <p className="reg-hero-desc">
           Zapewniamy najwyższą jakość edukacji, łącząc pasję nauczania z
