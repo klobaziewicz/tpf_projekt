@@ -8,7 +8,7 @@
     --color-secondary:      #565E74;   /* Secondary text, ikony, subheadings */
     --color-secondary-light:#ECEDF0;   /* Subtelne tła, divider */
     
-    --color-accent:         #f59f00;   /* Accent — został zmieniony względem oryginału */
+    --color-accent:         #924700;   /* Accent — zgodnie ze specyfikacją */
     --color-accent-light:   #FDF0E3;   /* Tło accent */
     --color-accent-mid:     #F2C68A;   /* Border accent */
     
@@ -29,7 +29,7 @@
     
     /* Tekst */
     --color-text-primary:   #212121;   /* Główny tekst */
-    --color-text-secondary: #565E74;   /* Pomocniczy tekst (= --color-secondary) */
+    --color-text-secondary: #BABABA;   /* Text Secondary ze specyfikacji */
     --color-text-muted:     #BABABA;   /* Placeholder, timestamp, labels */
     --color-text-inverse:   #FFFFFF;
     
