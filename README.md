@@ -1,4 +1,4 @@
-# 📚 Korki Marketplace
+<img width="1500" height="2332" alt="Page On The Fly - June 10, 2026 - KRZYSZTOF Lobaziewicz-ScrollMap-2026-06-10" src="https://github.com/user-attachments/assets/cdcac0de-fe6a-45b0-baac-79fbdc0268f3" /># 📚 Korki Marketplace
 
 **TwojeKorki.pl** to nowoczesna platforma typu marketplace (model B2C/C2C) łącząca uczniów i rodziców poszukujących korepetytorów z nauczycielami oferującymi prywatne lekcje. Umożliwia wygodne wyszukiwanie i rezerwację terminów lekcji, komunikację oraz kompleksowe zarządzanie procesem edukacji poprzez dedykowane panele (Dashboardy) dla ucznia, rodzica i nauczyciela.
 
@@ -41,23 +41,33 @@
 
 * Google Analytics
 
+Ogólny raport związany mi. z lokalizacją:
+
 https://analytics.google.com/analytics/web/?authuser=1#/a395258357p538329856/realtime/overview?params=_u..nav%3Dmaui&collectionId=user
-  
+
+Ogólny raport związany z użytkownikami:
+
 https://analytics.google.com/analytics/web/?authuser=1#/a395258357p538329856/reports/dashboard?params=_u..nav%3Dmaui%26_r.3..selmet%3D%5B%22conversions%22%5D&collectionId=business-objectives&ruid=business-objectives-generate-leads-overview,business-objectives,generate-leads&r=business-objectives-generate-leads-overview
 
-https://analy![Uploading Page On The Fly - June 10, 2026 - KRZYSZTOF Lobaziewicz-ScrollMap-2026-06-10.png…]()
-tics.google.com/analytics/web/?authuser=1#/a395258357p538329856/reports/dashboard?params=_u..nav%3Dmaui&collectionId=user&ruid=user-demographics-overview,user,demographics&r=user-demographics-overview
+Szczegółowy raport związany z użytkownikami:
+
+https://analytics.google.com/analytics/web/?authuser=1#/a395258357p538329856/reports/dashboard?params=_u..nav%3Dmaui&collectionId=user&ruid=user-demographics-overview,user,demographics&r=user-demographics-overview
 
 * Contentsquare
-  
-<img width="1500" height="2332" alt="Page On The Fly - June 10, 2026 - KRZYSZTOF Lobaziewicz-MoveMap-2026-06-10" src="https://github.com/user-attachments/assets/1c9815a9-2c58-421a-b1e0-1db1ae15eb69" />
 
-<img width="1500" height="2332" alt="Page On The Fly - June 10, 2026 - KRZYSZTOF Lobaziewicz-MoveMap-2026-06-10" src="https://github.com/user-attachments/assets/5b304528-084e-4788-836f-819f9088a556" />
+Analiza kliknięć na stronie:
 
-<img width="1500" height="2332" alt="Page On The Fly - June 10, 2026 - KRZYSZTOF Lobaziewicz-ClickMap-2026-06-10" src="https://github.com/user-attachments/assets/cf992eeb-9b5b-42f9-92e3-f75e44eba4b9" />
+<img width="375" height="583" alt="Page On The Fly - June 10, 2026 - KRZYSZTOF Lobaziewicz-ClickMap-2026-06-10" src="https://github.com/user-attachments/assets/cf992eeb-9b5b-42f9-92e3-f75e44eba4b9" />
+
+Analiza ustawienia kursora na stronie:
+
+<img width="375" height="583" alt="Page On The Fly - June 10, 2026 - KRZYSZTOF Lobaziewicz-MoveMap-2026-06-10" src="https://github.com/user-attachments/assets/1c9815a9-2c58-421a-b1e0-1db1ae15eb69" />
+
+Analiza użycia scrolla na stronie:
+
+<img width="375" height="583" alt="Page On The Fly - June 10, 2026 - KRZYSZTOF Lobaziewicz-ScrollMap-2026-06-10" src="https://github.com/user-attachments/assets/3370fb20-6134-47ee-8cc0-7740676b63ed" />
 
 ![Uploading Page On The Fly - June 10, 2026 - KRZYSZTOF Lobaziewicz-MoveMap-2026-06-10.png…]()
-
 
 ---
 
